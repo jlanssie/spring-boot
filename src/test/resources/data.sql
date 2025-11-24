@@ -1,0 +1,1 @@
+INSERT INTO DEMO (id, amount) VALUES (99, 123.45);

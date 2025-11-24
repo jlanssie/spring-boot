@@ -1,4 +1,6 @@
 package com.example.demo;
 
-record Demo(Long id, Double amount) {
+import org.springframework.data.annotation.Id;
+
+record Demo(@Id Long id, Double amount) {
 }

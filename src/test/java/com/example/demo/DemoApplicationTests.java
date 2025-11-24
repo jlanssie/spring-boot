@@ -16,8 +16,7 @@ class DemoApplicationTests {
 
     @BeforeEach
     void setUp(WebApplicationContext context) {
-        client = RestTestClient.bindToApplicationContext(context)
-                .build();
+        client = RestTestClient.bindToApplicationContext(context).build();
     }
 
     @Test

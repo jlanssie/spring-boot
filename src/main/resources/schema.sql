@@ -1,0 +1,4 @@
+CREATE TABLE DEMO (
+    id BIGINT PRIMARY KEY,
+    amount DECIMAL(10, 2)
+);
