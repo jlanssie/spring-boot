@@ -27,4 +27,4 @@ Please make sure to update tests as appropriate.
 
 ## License
 
-[GNU GPL 3.0](https://www.gnu.org/licenses/gpl-3.0.en.html)
+None.
