@@ -31,7 +31,7 @@ bin/
 *.iml
 *.ipr
 *.iws
-#*.idea
+*.idea
 
 .vscode/
 README.html
