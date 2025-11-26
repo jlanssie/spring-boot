@@ -5,10 +5,17 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="5076eb5e-7e32-41ef-a471-1488447308f2" name="Changes" comment="">
+      <change afterPath="$PROJECT_DIR$/src/main/java/com/example/demo/SecurityConfig.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/build.gradle" beforeDir="false" afterPath="$PROJECT_DIR$/build.gradle" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/example/demo/Demo.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/example/demo/Demo.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/java/com/example/demo/DemoController.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/example/demo/DemoController.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/example/demo/DemoRepository.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/example/demo/DemoRepository.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/resources/schema.sql" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/resources/schema.sql" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/test/java/com/example/demo/DemoApplicationTests.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/test/java/com/example/demo/DemoApplicationTests.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/test/java/com/example/demo/DemoTest.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/test/java/com/example/demo/DemoTest.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/test/resources/com/example/demo/demo.json" beforeDir="false" afterPath="$PROJECT_DIR$/src/test/resources/com/example/demo/demo.json" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/test/resources/com/example/demo/demos.json" beforeDir="false" afterPath="$PROJECT_DIR$/src/test/resources/com/example/demo/demos.json" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/test/resources/data.sql" beforeDir="false" afterPath="$PROJECT_DIR$/src/test/resources/data.sql" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -43,8 +50,8 @@
   <component name="FileTemplateManagerImpl">
     <option name="RECENT_TEMPLATES">
       <list>
-        <option value="Class" />
         <option value="JUnit5 Test Class" />
+        <option value="Class" />
       </list>
     </option>
   </component>
@@ -66,13 +73,17 @@
   "keyToString": {
     "Gradle.DemoApplicationTests.createDemo.executor": "Run",
     "Gradle.DemoApplicationTests.executor": "Run",
+    "Gradle.DemoApplicationTests.readDemo.executor": "Run",
+    "Gradle.DemoApplicationTests.readDemo_404.executor": "Run",
     "Gradle.DemoApplicationTests.readDemos.executor": "Run",
+    "Gradle.DemoApplicationTests.readDemos_default.executor": "Run",
     "Gradle.DemoApplicationTests.readDemos_pagination.executor": "Run",
     "Gradle.DemoApplicationTests.readDemos_sorting.executor": "Run",
     "Gradle.DemoApplicationTests.shouldCreateANewCashCard.executor": "Run",
     "Gradle.DemoApplicationTests.shouldNotReturnACashCardWithAnUnknownId.executor": "Run",
     "Gradle.DemoApplicationTests.shouldReturnACashCardWhenDataIsSaved.executor": "Run",
     "Gradle.DemoApplicationTests.test.executor": "Run",
+    "Gradle.DemoApplicationTests.unauthenticated.executor": "Run",
     "Gradle.DemoTest.demoListDeserializationTest.executor": "Run",
     "Gradle.DemoTest.demoListSerializationTest.executor": "Run",
     "Gradle.DemoTest.executor": "Run",
@@ -103,7 +114,7 @@
       <recent name="com.example.demo" />
     </key>
   </component>
-  <component name="RunManager" selected="Gradle.DemoApplicationTests.readDemos_default">
+  <component name="RunManager" selected="Gradle.DemoApplicationTests">
     <configuration name="DemoApplicationTests" type="GradleRunConfiguration" factoryName="Gradle" temporary="true">
       <ExternalSystemSettings>
         <option name="executionName" />
@@ -128,7 +139,7 @@
       <RunAsTest>true</RunAsTest>
       <method v="2" />
     </configuration>
-    <configuration name="DemoApplicationTests.createDemo" type="GradleRunConfiguration" factoryName="Gradle" temporary="true">
+    <configuration name="DemoApplicationTests.readDemo" type="GradleRunConfiguration" factoryName="Gradle" temporary="true">
       <ExternalSystemSettings>
         <option name="executionName" />
         <option name="externalProjectPath" value="$PROJECT_DIR$" />
@@ -141,7 +152,7 @@
           <list>
             <option value=":test" />
             <option value="--tests" />
-            <option value="&quot;com.example.demo.DemoApplicationTests.createDemo&quot;" />
+            <option value="&quot;com.example.demo.DemoApplicationTests.readDemo&quot;" />
           </list>
         </option>
         <option name="vmOptions" />
@@ -152,7 +163,7 @@
       <RunAsTest>true</RunAsTest>
       <method v="2" />
     </configuration>
-    <configuration name="DemoApplicationTests.readDemos_default" type="GradleRunConfiguration" factoryName="Gradle" temporary="true">
+    <configuration name="DemoApplicationTests.readDemo_404" type="GradleRunConfiguration" factoryName="Gradle" temporary="true">
       <ExternalSystemSettings>
         <option name="executionName" />
         <option name="externalProjectPath" value="$PROJECT_DIR$" />
@@ -165,7 +176,7 @@
           <list>
             <option value=":test" />
             <option value="--tests" />
-            <option value="&quot;com.example.demo.DemoApplicationTests.readDemos_default&quot;" />
+            <option value="&quot;com.example.demo.DemoApplicationTests.readDemo_404&quot;" />
           </list>
         </option>
         <option name="vmOptions" />
@@ -176,7 +187,7 @@
       <RunAsTest>true</RunAsTest>
       <method v="2" />
     </configuration>
-    <configuration name="DemoApplicationTests.readDemos_pagination" type="GradleRunConfiguration" factoryName="Gradle" temporary="true">
+    <configuration name="DemoApplicationTests.unauthenticated" type="GradleRunConfiguration" factoryName="Gradle" temporary="true">
       <ExternalSystemSettings>
         <option name="executionName" />
         <option name="externalProjectPath" value="$PROJECT_DIR$" />
@@ -189,7 +200,7 @@
           <list>
             <option value=":test" />
             <option value="--tests" />
-            <option value="&quot;com.example.demo.DemoApplicationTests.readDemos_pagination&quot;" />
+            <option value="&quot;com.example.demo.DemoApplicationTests.unauthenticated&quot;" />
           </list>
         </option>
         <option name="vmOptions" />
@@ -200,7 +211,7 @@
       <RunAsTest>true</RunAsTest>
       <method v="2" />
     </configuration>
-    <configuration name="DemoApplicationTests.readDemos_sorting" type="GradleRunConfiguration" factoryName="Gradle" temporary="true">
+    <configuration name="DemoTest" type="GradleRunConfiguration" factoryName="Gradle" temporary="true">
       <ExternalSystemSettings>
         <option name="executionName" />
         <option name="externalProjectPath" value="$PROJECT_DIR$" />
@@ -213,7 +224,7 @@
           <list>
             <option value=":test" />
             <option value="--tests" />
-            <option value="&quot;com.example.demo.DemoApplicationTests.readDemos_sorting&quot;" />
+            <option value="&quot;com.example.demo.DemoTest&quot;" />
           </list>
         </option>
         <option name="vmOptions" />
@@ -226,11 +237,11 @@
     </configuration>
     <recent_temporary>
       <list>
-        <item itemvalue="Gradle.DemoApplicationTests.readDemos_default" />
-        <item itemvalue="Gradle.DemoApplicationTests.readDemos_sorting" />
         <item itemvalue="Gradle.DemoApplicationTests" />
-        <item itemvalue="Gradle.DemoApplicationTests.readDemos_pagination" />
-        <item itemvalue="Gradle.DemoApplicationTests.createDemo" />
+        <item itemvalue="Gradle.DemoApplicationTests.unauthenticated" />
+        <item itemvalue="Gradle.DemoApplicationTests.readDemo" />
+        <item itemvalue="Gradle.DemoApplicationTests.readDemo_404" />
+        <item itemvalue="Gradle.DemoTest" />
       </list>
     </recent_temporary>
   </component>
@@ -249,17 +260,17 @@
       <breakpoints>
         <line-breakpoint enabled="true" type="java-line">
           <url>file://$PROJECT_DIR$/src/main/java/com/example/demo/DemoController.java</url>
-          <line>29</line>
+          <line>26</line>
           <option name="timeStamp" value="1" />
         </line-breakpoint>
         <line-breakpoint enabled="true" type="java-line">
           <url>file://$PROJECT_DIR$/src/main/java/com/example/demo/DemoController.java</url>
-          <line>28</line>
+          <line>25</line>
           <option name="timeStamp" value="2" />
         </line-breakpoint>
         <line-breakpoint enabled="true" type="java-line">
           <url>file://$PROJECT_DIR$/src/main/java/com/example/demo/DemoController.java</url>
-          <line>33</line>
+          <line>30</line>
           <option name="timeStamp" value="3" />
         </line-breakpoint>
       </breakpoints>

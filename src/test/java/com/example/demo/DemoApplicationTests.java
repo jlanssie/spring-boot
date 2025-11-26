@@ -3,39 +3,45 @@ package com.example.demo;
 import com.jayway.jsonpath.DocumentContext;
 import com.jayway.jsonpath.JsonPath;
 import net.minidev.json.JSONArray;
-import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.boot.resttestclient.autoconfigure.AutoConfigureRestTestClient;
 import org.springframework.boot.test.context.SpringBootTest;
+import org.springframework.http.HttpHeaders;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.MediaType;
 import org.springframework.test.annotation.DirtiesContext;
 import org.springframework.test.web.servlet.client.EntityExchangeResult;
 import org.springframework.test.web.servlet.client.RestTestClient;
-import org.springframework.web.context.WebApplicationContext;
 
 import java.net.URI;
+import java.util.Base64;
 
 import static org.assertj.core.api.Assertions.assertThat;
 
 @SpringBootTest(webEnvironment = SpringBootTest.WebEnvironment.RANDOM_PORT)
+@AutoConfigureRestTestClient
 class DemoApplicationTests {
 
-    RestTestClient client;
+    String username = "sarah1";
+    String password = "abc123";
+    String credentials = username + ":" + password;
+    String encodedAuth = Base64.getEncoder().encodeToString(credentials.getBytes());
+    String authHeader = "Basic " + encodedAuth;
 
-    @BeforeEach
-    void setUp(WebApplicationContext context) {
-        client = RestTestClient.bindToApplicationContext(context).build();
-    }
+    @Autowired
+    private RestTestClient client;
 
     @Test
     @DirtiesContext
     void createDemo() {
-        Demo demo = new Demo(null, 250.00);
+        Demo demo = new Demo(null, 250.00, "sarah1");
 
         EntityExchangeResult<Void> postResult = client.post()
                 .uri("/demo")
                 .contentType(MediaType.APPLICATION_JSON)
                 .body(demo)
+                .header(HttpHeaders.AUTHORIZATION, authHeader)
                 .exchange()
                 .expectStatus()
                 .isCreated()
@@ -44,11 +50,12 @@ class DemoApplicationTests {
 
         assertThat(postResult.getStatus().value()).isEqualTo(HttpStatus.CREATED.value());
 
-        URI loc = postResult.getResponseHeaders().getLocation();
-        assertThat(loc).isNotNull();
+        URI location = postResult.getResponseHeaders().getLocation();
+        assertThat(location).isNotNull();
 
         EntityExchangeResult<String> getResult = client.get()
-                .uri(loc)
+                .uri(location)
+                .header(HttpHeaders.AUTHORIZATION, authHeader)
                 .exchange()
                 .expectStatus()
                 .isOk()
@@ -69,6 +76,7 @@ class DemoApplicationTests {
     void readDemo() {
         EntityExchangeResult<String> result = client.get()
                 .uri("/demo/99")
+                .header(HttpHeaders.AUTHORIZATION, authHeader)
                 .exchange()
                 .expectStatus()
                 .isOk()
@@ -79,7 +87,7 @@ class DemoApplicationTests {
 
         String responseBody = result.getResponseBody();
 
-        String expected = "{\"id\":99,\"amount\":123.45}";
+        String expected = "{\"id\":99,\"amount\":123.45,\"owner\":\"sarah1\"}";
 
         assertThat(responseBody).isEqualTo(expected);
     }
@@ -88,6 +96,7 @@ class DemoApplicationTests {
     void readDemo_404() {
         EntityExchangeResult<String> result = client.get()
                 .uri("/demo/1000")
+                .header(HttpHeaders.AUTHORIZATION, authHeader)
                 .exchange()
                 .expectStatus()
                 .isNotFound()
@@ -102,6 +111,7 @@ class DemoApplicationTests {
     void readDemos() {
         EntityExchangeResult<String> result = client.get()
                 .uri("/demo")
+                .header(HttpHeaders.AUTHORIZATION, authHeader)
                 .exchange()
                 .expectStatus()
                 .isOk()
@@ -132,6 +142,7 @@ class DemoApplicationTests {
     void readDemos_pagination() {
         EntityExchangeResult<String> result = client.get()
                 .uri("/demo?page=0&size=1")
+                .header(HttpHeaders.AUTHORIZATION, authHeader)
                 .exchange()
                 .expectStatus()
                 .isOk()
@@ -150,6 +161,7 @@ class DemoApplicationTests {
     void readDemos_sorting() {
         EntityExchangeResult<String> result = client.get()
                 .uri("/demo?page=0&size=1&sort=amount,desc")
+                .header(HttpHeaders.AUTHORIZATION, authHeader)
                 .exchange()
                 .expectStatus()
                 .isOk()
@@ -172,6 +184,7 @@ class DemoApplicationTests {
     void readDemos_default() {
         EntityExchangeResult<String> result = client.get()
                 .uri("/demo")
+                .header(HttpHeaders.AUTHORIZATION, authHeader)
                 .exchange()
                 .expectStatus()
                 .isOk()
@@ -188,6 +201,31 @@ class DemoApplicationTests {
 
         JSONArray amounts = documentContext.read("$..amount");
         assertThat(amounts).containsExactly(1.00, 123.45, 150.00);
+    }
 
+    @Test
+    void unauthenticated() {
+        String faulty_username = "faulty-user";
+        String faulty_password = "faulty-password";
+        String faulty_credentials = faulty_username + ":" + faulty_password;
+        String faulty_encodedAuth = Base64.getEncoder().encodeToString(faulty_credentials.getBytes());
+        String faulty_authHeader = "Basic " + faulty_encodedAuth;
+
+        EntityExchangeResult<String> result = client.get()
+                .uri("/demo/99")
+                .header(HttpHeaders.AUTHORIZATION, faulty_authHeader)
+                .exchange()
+                .expectStatus()
+                .isUnauthorized()
+                .expectBody(String.class)
+                .returnResult();
+
+        assertThat(result.getStatus().value())
+                .as("Checking HTTP Status Code")
+                .isEqualTo(HttpStatus.UNAUTHORIZED.value());
+
+        String responseBody = result.getResponseBody();
+
+        assertThat(responseBody).isNullOrEmpty();
     }
 }
