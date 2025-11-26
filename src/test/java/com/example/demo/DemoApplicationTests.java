@@ -1,5 +1,7 @@
 package com.example.demo;
 
+import com.jayway.jsonpath.DocumentContext;
+import com.jayway.jsonpath.JsonPath;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 import org.springframework.boot.test.context.SpringBootTest;
@@ -8,6 +10,8 @@ import org.springframework.http.MediaType;
 import org.springframework.test.web.servlet.client.EntityExchangeResult;
 import org.springframework.test.web.servlet.client.RestTestClient;
 import org.springframework.web.context.WebApplicationContext;
+
+import java.net.URI;
 
 import static org.assertj.core.api.Assertions.assertThat;
 
@@ -51,5 +55,41 @@ class DemoApplicationTests {
 
         assertThat(result.getStatus().value()).isEqualTo(HttpStatus.NOT_FOUND.value());
         assertThat(result.getResponseBody()).isNullOrEmpty();
+    }
+
+    @Test
+    void shouldCreateANewCashCard() {
+        Demo demo = new Demo(null, 250.00);
+
+        EntityExchangeResult<Void> result = client.post()
+                .uri("/demo")
+                .contentType(MediaType.APPLICATION_JSON)
+                .body(demo)
+                .exchange()
+                .expectStatus()
+                .isCreated()
+                .expectBody(Void.class)
+                .returnResult();
+
+        assertThat(result.getStatus().value()).isEqualTo(HttpStatus.CREATED.value());
+
+        URI loc = result.getResponseHeaders().getLocation();
+        assertThat(loc).isNotNull();
+
+        String responseBody = client.get()
+                .uri(loc)
+                .exchange()
+                .expectStatus()
+                .isOk()
+                .expectBody(String.class)
+                .returnResult()
+                .getResponseBody();
+
+        DocumentContext documentContext = JsonPath.parse(responseBody);
+        Number id = documentContext.read("$.id");
+        Double amount = documentContext.read("$.amount");
+
+        assertThat(id).isNotNull();
+        assertThat(amount).isEqualTo(250.00);
     }
 }
