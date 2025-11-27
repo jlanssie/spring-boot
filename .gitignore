@@ -28,11 +28,13 @@ bin/
 
 # IntelliJ IDEA Files
 
+.idea/
+*.iml
 *.iml
 *.ipr
 *.iws
 *.idea
 
-.vscode/
-README.html
+# VS Code Files
 
+.vscode/
