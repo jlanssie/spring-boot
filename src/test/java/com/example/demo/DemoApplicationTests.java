@@ -139,7 +139,7 @@ class DemoApplicationTests {
         assertThat(amounts).containsExactlyInAnyOrder(123.45, 1.0, 150.00);
     }
 
-    @Disabled
+    //@Disabled
     @Test
     void readDemos_pagination() {
         EntityExchangeResult<String> result = client.get()

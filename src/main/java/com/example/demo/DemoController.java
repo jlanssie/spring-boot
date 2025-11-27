@@ -44,12 +44,25 @@ public class DemoController {
 
     @GetMapping
     private ResponseEntity<List<Demo>> readDemos(Pageable pageable, Principal principal) {
-        Page<Demo> page = demoRepository.findByOwner(principal.getName(),
-                PageRequest.of(
-                        pageable.getPageNumber(),
-                        pageable.getPageSize(),
-                        pageable.getSortOr(Sort.by(Sort.Direction.ASC, "amount"))
-                ));
+        Page<Demo> page = null;
+
+        boolean sorting = !pageable.getSort().isEmpty();
+        if (sorting) {
+            page = demoRepository.findByOwner(principal.getName(),
+                    PageRequest.of(
+                            pageable.getPageNumber(),
+                            pageable.getPageSize(),
+                            pageable.getSort()
+                    ));
+        } else {
+            page = demoRepository.findByOwner(principal.getName(),
+                    PageRequest.of(
+                            pageable.getPageNumber(),
+                            pageable.getPageSize()
+                    ));
+        }
+
+        assert page != null;
         return ResponseEntity.ok(page.getContent());
     }
 
