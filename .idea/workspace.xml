@@ -4,7 +4,12 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="5076eb5e-7e32-41ef-a471-1488447308f2" name="Changes" comment="" />
+    <list default="true" id="5076eb5e-7e32-41ef-a471-1488447308f2" name="Changes" comment="">
+      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/example/demo/DemoController.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/example/demo/DemoController.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/example/demo/DemoRepository.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/example/demo/DemoRepository.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/test/java/com/example/demo/DemoApplicationTests.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/test/java/com/example/demo/DemoApplicationTests.java" afterDir="false" />
+    </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
     <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
@@ -57,41 +62,44 @@
     <option name="hideEmptyMiddlePackages" value="true" />
     <option name="showLibraryContents" value="true" />
   </component>
-  <component name="PropertiesComponent">{
-  &quot;keyToString&quot;: {
-    &quot;Gradle.DemoApplicationTests.createDemo.executor&quot;: &quot;Debug&quot;,
-    &quot;Gradle.DemoApplicationTests.executor&quot;: &quot;Run&quot;,
-    &quot;Gradle.DemoApplicationTests.ownership.executor&quot;: &quot;Run&quot;,
-    &quot;Gradle.DemoApplicationTests.readDemo.executor&quot;: &quot;Run&quot;,
-    &quot;Gradle.DemoApplicationTests.readDemo_404.executor&quot;: &quot;Run&quot;,
-    &quot;Gradle.DemoApplicationTests.readDemos.executor&quot;: &quot;Run&quot;,
-    &quot;Gradle.DemoApplicationTests.readDemos_default.executor&quot;: &quot;Run&quot;,
-    &quot;Gradle.DemoApplicationTests.readDemos_pagination.executor&quot;: &quot;Run&quot;,
-    &quot;Gradle.DemoApplicationTests.readDemos_sorting.executor&quot;: &quot;Run&quot;,
-    &quot;Gradle.DemoApplicationTests.shouldCreateANewCashCard.executor&quot;: &quot;Run&quot;,
-    &quot;Gradle.DemoApplicationTests.shouldNotReturnACashCardWithAnUnknownId.executor&quot;: &quot;Run&quot;,
-    &quot;Gradle.DemoApplicationTests.shouldReturnACashCardWhenDataIsSaved.executor&quot;: &quot;Run&quot;,
-    &quot;Gradle.DemoApplicationTests.shouldUpdateAnExistingDemo.executor&quot;: &quot;Run&quot;,
-    &quot;Gradle.DemoApplicationTests.test.executor&quot;: &quot;Run&quot;,
-    &quot;Gradle.DemoApplicationTests.unauthenticated.executor&quot;: &quot;Run&quot;,
-    &quot;Gradle.DemoApplicationTests.unauthorized.executor&quot;: &quot;Run&quot;,
-    &quot;Gradle.DemoApplicationTests.updateDemo_demoDoesNotExist.executor&quot;: &quot;Run&quot;,
-    &quot;Gradle.DemoTest.demoListDeserializationTest.executor&quot;: &quot;Run&quot;,
-    &quot;Gradle.DemoTest.demoListSerializationTest.executor&quot;: &quot;Run&quot;,
-    &quot;Gradle.DemoTest.executor&quot;: &quot;Run&quot;,
-    &quot;Gradle.Download Sources.executor&quot;: &quot;Run&quot;,
-    &quot;Gradle.demo [dependencies].executor&quot;: &quot;Run&quot;,
-    &quot;ModuleVcsDetector.initialDetectionPerformed&quot;: &quot;true&quot;,
-    &quot;RunOnceActivity.ShowReadmeOnStart&quot;: &quot;true&quot;,
-    &quot;RunOnceActivity.git.unshallow&quot;: &quot;true&quot;,
-    &quot;com.intellij.testIntegration.createTest.CreateTestDialog.defaultLibrary&quot;: &quot;JUnit5&quot;,
-    &quot;com.intellij.testIntegration.createTest.CreateTestDialog.defaultLibrarySuperClass.JUnit5&quot;: &quot;&quot;,
-    &quot;git-widget-placeholder&quot;: &quot;main&quot;,
-    &quot;kotlin-language-version-configured&quot;: &quot;true&quot;,
-    &quot;last_opened_file_path&quot;: &quot;/private/var/Repos/demo&quot;,
-    &quot;settings.editor.selected.configurable&quot;: &quot;preferences.pluginManager&quot;
+  <component name="PropertiesComponent"><![CDATA[{
+  "keyToString": {
+    "Gradle.DemoApplicationTests.createDemo.executor": "Debug",
+    "Gradle.DemoApplicationTests.deleteDemo_demoDoesNotExist.executor": "Run",
+    "Gradle.DemoApplicationTests.deleteDemo_demoIsNotOwned.executor": "Run",
+    "Gradle.DemoApplicationTests.executor": "Run",
+    "Gradle.DemoApplicationTests.ownership.executor": "Run",
+    "Gradle.DemoApplicationTests.readDemo.executor": "Run",
+    "Gradle.DemoApplicationTests.readDemo_404.executor": "Run",
+    "Gradle.DemoApplicationTests.readDemos.executor": "Run",
+    "Gradle.DemoApplicationTests.readDemos_default.executor": "Run",
+    "Gradle.DemoApplicationTests.readDemos_pagination.executor": "Run",
+    "Gradle.DemoApplicationTests.readDemos_sorting.executor": "Run",
+    "Gradle.DemoApplicationTests.shouldCreateANewCashCard.executor": "Run",
+    "Gradle.DemoApplicationTests.shouldDeleteAnExistingCashCard.executor": "Run",
+    "Gradle.DemoApplicationTests.shouldNotReturnACashCardWithAnUnknownId.executor": "Run",
+    "Gradle.DemoApplicationTests.shouldReturnACashCardWhenDataIsSaved.executor": "Run",
+    "Gradle.DemoApplicationTests.shouldUpdateAnExistingDemo.executor": "Run",
+    "Gradle.DemoApplicationTests.test.executor": "Run",
+    "Gradle.DemoApplicationTests.unauthenticated.executor": "Run",
+    "Gradle.DemoApplicationTests.unauthorized.executor": "Run",
+    "Gradle.DemoApplicationTests.updateDemo_demoDoesNotExist.executor": "Run",
+    "Gradle.DemoTest.demoListDeserializationTest.executor": "Run",
+    "Gradle.DemoTest.demoListSerializationTest.executor": "Run",
+    "Gradle.DemoTest.executor": "Run",
+    "Gradle.Download Sources.executor": "Run",
+    "Gradle.demo [dependencies].executor": "Run",
+    "ModuleVcsDetector.initialDetectionPerformed": "true",
+    "RunOnceActivity.ShowReadmeOnStart": "true",
+    "RunOnceActivity.git.unshallow": "true",
+    "com.intellij.testIntegration.createTest.CreateTestDialog.defaultLibrary": "JUnit5",
+    "com.intellij.testIntegration.createTest.CreateTestDialog.defaultLibrarySuperClass.JUnit5": "",
+    "git-widget-placeholder": "main",
+    "kotlin-language-version-configured": "true",
+    "last_opened_file_path": "/private/var/Repos/demo",
+    "settings.editor.selected.configurable": "preferences.pluginManager"
   }
-}</component>
+}]]></component>
   <component name="RecentsManager">
     <key name="CreateTestDialog.Recents.Supers">
       <recent name="" />
@@ -106,7 +114,7 @@
       <recent name="com.example.demo" />
     </key>
   </component>
-  <component name="RunManager" selected="Gradle.DemoApplicationTests">
+  <component name="RunManager" selected="Gradle.DemoApplicationTests.deleteDemo_demoIsNotOwned">
     <configuration name="DemoApplicationTests" type="GradleRunConfiguration" factoryName="Gradle" temporary="true">
       <ExternalSystemSettings>
         <option name="executionName" />
@@ -131,7 +139,7 @@
       <RunAsTest>true</RunAsTest>
       <method v="2" />
     </configuration>
-    <configuration name="DemoApplicationTests.createDemo" type="GradleRunConfiguration" factoryName="Gradle" temporary="true">
+    <configuration name="DemoApplicationTests.deleteDemo_demoDoesNotExist" type="GradleRunConfiguration" factoryName="Gradle" temporary="true">
       <ExternalSystemSettings>
         <option name="executionName" />
         <option name="externalProjectPath" value="$PROJECT_DIR$" />
@@ -144,7 +152,7 @@
           <list>
             <option value=":test" />
             <option value="--tests" />
-            <option value="&quot;com.example.demo.DemoApplicationTests.createDemo&quot;" />
+            <option value="&quot;com.example.demo.DemoApplicationTests.deleteDemo_demoDoesNotExist&quot;" />
           </list>
         </option>
         <option name="vmOptions" />
@@ -155,7 +163,7 @@
       <RunAsTest>true</RunAsTest>
       <method v="2" />
     </configuration>
-    <configuration name="DemoApplicationTests.readDemos_pagination" type="GradleRunConfiguration" factoryName="Gradle" temporary="true">
+    <configuration name="DemoApplicationTests.deleteDemo_demoIsNotOwned" type="GradleRunConfiguration" factoryName="Gradle" temporary="true">
       <ExternalSystemSettings>
         <option name="executionName" />
         <option name="externalProjectPath" value="$PROJECT_DIR$" />
@@ -168,7 +176,7 @@
           <list>
             <option value=":test" />
             <option value="--tests" />
-            <option value="&quot;com.example.demo.DemoApplicationTests.readDemos_pagination&quot;" />
+            <option value="&quot;com.example.demo.DemoApplicationTests.deleteDemo_demoIsNotOwned&quot;" />
           </list>
         </option>
         <option name="vmOptions" />
@@ -179,7 +187,7 @@
       <RunAsTest>true</RunAsTest>
       <method v="2" />
     </configuration>
-    <configuration name="DemoApplicationTests.shouldUpdateAnExistingDemo" type="GradleRunConfiguration" factoryName="Gradle" temporary="true">
+    <configuration name="DemoApplicationTests.shouldDeleteAnExistingCashCard" type="GradleRunConfiguration" factoryName="Gradle" temporary="true">
       <ExternalSystemSettings>
         <option name="executionName" />
         <option name="externalProjectPath" value="$PROJECT_DIR$" />
@@ -192,7 +200,7 @@
           <list>
             <option value=":test" />
             <option value="--tests" />
-            <option value="&quot;com.example.demo.DemoApplicationTests.shouldUpdateAnExistingDemo&quot;" />
+            <option value="&quot;com.example.demo.DemoApplicationTests.shouldDeleteAnExistingCashCard&quot;" />
           </list>
         </option>
         <option name="vmOptions" />
@@ -229,11 +237,11 @@
     </configuration>
     <recent_temporary>
       <list>
+        <item itemvalue="Gradle.DemoApplicationTests.deleteDemo_demoIsNotOwned" />
+        <item itemvalue="Gradle.DemoApplicationTests.deleteDemo_demoDoesNotExist" />
+        <item itemvalue="Gradle.DemoApplicationTests.shouldDeleteAnExistingCashCard" />
         <item itemvalue="Gradle.DemoApplicationTests" />
         <item itemvalue="Gradle.DemoApplicationTests.updateDemo_demoDoesNotExist" />
-        <item itemvalue="Gradle.DemoApplicationTests.shouldUpdateAnExistingDemo" />
-        <item itemvalue="Gradle.DemoApplicationTests.createDemo" />
-        <item itemvalue="Gradle.DemoApplicationTests.readDemos_pagination" />
       </list>
     </recent_temporary>
   </component>

@@ -334,4 +334,76 @@ class DemoApplicationTests {
 
         assertThat(result.getStatus().value()).isEqualTo(HttpStatus.NOT_FOUND.value());
     }
+
+    @Test
+    @DirtiesContext
+    void deleteDemo() {
+        EntityExchangeResult<Void> deleteResult = client.delete()
+                .uri("/demo/99")
+                .header(HttpHeaders.AUTHORIZATION, authHeader)
+                .exchange()
+                .expectStatus()
+                .isNoContent()
+                .expectBody(Void.class)
+                .returnResult();
+
+        assertThat(deleteResult.getStatus().value()).isEqualTo(HttpStatus.NO_CONTENT.value());
+
+        EntityExchangeResult<String> getResult = client.get()
+                .uri("/demo/99")
+                .header(HttpHeaders.AUTHORIZATION, authHeader)
+                .exchange()
+                .expectStatus()
+                .isNotFound()
+                .expectBody(String.class)
+                .returnResult();
+
+        assertThat(getResult.getStatus().value()).isEqualTo(HttpStatus.NOT_FOUND.value());
+        assertThat(getResult.getResponseBody()).isNullOrEmpty();
+    }
+
+    @Test
+    void deleteDemo_demoDoesNotExist() {
+        EntityExchangeResult<Void> result = client.delete()
+                .uri("/demo/99999")
+                .header(HttpHeaders.AUTHORIZATION, authHeader)
+                .exchange()
+                .expectStatus()
+                .isNotFound()
+                .expectBody(Void.class)
+                .returnResult();
+
+        assertThat(result.getStatus().value()).isEqualTo(HttpStatus.NOT_FOUND.value());
+    }
+
+    @Test
+    void deleteDemo_demoIsNotOwned() {
+        EntityExchangeResult<Void> deleteResult = client.delete()
+                .uri("/demo/102")
+                .header(HttpHeaders.AUTHORIZATION, authHeader)
+                .exchange()
+                .expectStatus()
+                .isNotFound()
+                .expectBody(Void.class)
+                .returnResult();
+
+        assertThat(deleteResult.getStatus().value()).isEqualTo(HttpStatus.NOT_FOUND.value());
+
+        String kumar_username = "kumar2";
+        String kumar_password = "xyz789";
+        String kumar_credentials = kumar_username + ":" + kumar_password;
+        String kumar_encodedAuth = Base64.getEncoder().encodeToString(kumar_credentials.getBytes());
+        String kumar_authHeader = "Basic " + kumar_encodedAuth;
+
+        EntityExchangeResult<String> getResult = client.get()
+                .uri("/demo/102")
+                .header(HttpHeaders.AUTHORIZATION, kumar_authHeader)
+                .exchange()
+                .expectStatus()
+                .isOk()
+                .expectBody(String.class)
+                .returnResult();
+
+        assertThat(getResult.getStatus().value()).isEqualTo(HttpStatus.OK.value());
+    }
 }

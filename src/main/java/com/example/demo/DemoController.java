@@ -65,4 +65,14 @@ public class DemoController {
     private Demo findDemo(Long requestedId, Principal principal) {
         return demoRepository.findByIdAndOwner(requestedId, principal.getName());
     }
+
+    @DeleteMapping("/{id}")
+    private ResponseEntity<Void> deleteCashCard(@PathVariable Long id, Principal principal) {
+        if (demoRepository.existsByIdAndOwner(id, principal.getName())) {
+            demoRepository.deleteById(id);
+            return ResponseEntity.noContent().build();
+        }
+
+        return ResponseEntity.notFound().build();
+    }
 }
