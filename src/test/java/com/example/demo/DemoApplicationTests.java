@@ -159,11 +159,11 @@ class DemoApplicationTests {
         assertThat(page.size()).isEqualTo(1);
     }
 
-    @Disabled
+    //@Disabled
     @Test
     void readDemos_sorting() {
         EntityExchangeResult<String> result = client.get()
-                .uri("/demo?page=0&size=1&sort=amount,desc")
+                .uri("/demo?sort=amount,desc")
                 .header(HttpHeaders.AUTHORIZATION, authHeader)
                 .exchange()
                 .expectStatus()
@@ -177,7 +177,7 @@ class DemoApplicationTests {
 
         DocumentContext documentContext = JsonPath.parse(responseBody);
         JSONArray read = documentContext.read("$[*]");
-        assertThat(read.size()).isEqualTo(1);
+        assertThat(read.size()).isEqualTo(3);
 
         double amount = documentContext.read("$[0].amount");
         assertThat(amount).isEqualTo(150.00);
