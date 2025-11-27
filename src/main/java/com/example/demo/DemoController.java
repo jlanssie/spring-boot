@@ -31,7 +31,7 @@ public class DemoController {
     }
 
     @GetMapping("/{requestedId}")
-    private ResponseEntity<Demo> findById(@PathVariable Long requestedId, Principal principal) {
+    private ResponseEntity<Demo> readDemo(@PathVariable Long requestedId, Principal principal) {
         Demo cashCard = demoRepository.findByIdAndOwner(requestedId, principal.getName());
         if (cashCard != null) {
             return ResponseEntity.ok(cashCard);
@@ -41,7 +41,7 @@ public class DemoController {
     }
 
     @GetMapping
-    private ResponseEntity<List<Demo>> findAll(Pageable pageable, Principal principal) {
+    private ResponseEntity<List<Demo>> readDemos(Pageable pageable, Principal principal) {
         Page<Demo> page = demoRepository.findByOwner(principal.getName(),
                 PageRequest.of(
                         pageable.getPageNumber(),
