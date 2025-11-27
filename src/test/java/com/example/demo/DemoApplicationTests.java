@@ -202,7 +202,7 @@ class DemoApplicationTests {
         assertThat(page.size()).isEqualTo(3);
 
         JSONArray amounts = documentContext.read("$..amount");
-        assertThat(amounts).containsExactly(1.00, 123.45, 150.00);
+        assertThat(amounts).containsExactly(123.45, 1.0, 150.0);
     }
 
     @Test

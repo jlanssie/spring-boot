@@ -3,7 +3,6 @@ package com.example.demo;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.PageRequest;
 import org.springframework.data.domain.Pageable;
-import org.springframework.data.domain.Sort;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 import org.springframework.web.util.UriComponentsBuilder;
@@ -44,25 +43,13 @@ public class DemoController {
 
     @GetMapping
     private ResponseEntity<List<Demo>> readDemos(Pageable pageable, Principal principal) {
-        Page<Demo> page = null;
+        Page<Demo> page = demoRepository.findByOwner(principal.getName(),
+                PageRequest.of(
+                        pageable.getPageNumber(),
+                        pageable.getPageSize(),
+                        pageable.getSort()
+                ));
 
-        boolean sorting = !pageable.getSort().isEmpty();
-        if (sorting) {
-            page = demoRepository.findByOwner(principal.getName(),
-                    PageRequest.of(
-                            pageable.getPageNumber(),
-                            pageable.getPageSize(),
-                            pageable.getSort()
-                    ));
-        } else {
-            page = demoRepository.findByOwner(principal.getName(),
-                    PageRequest.of(
-                            pageable.getPageNumber(),
-                            pageable.getPageSize()
-                    ));
-        }
-
-        assert page != null;
         return ResponseEntity.ok(page.getContent());
     }
 
