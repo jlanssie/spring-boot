@@ -228,4 +228,50 @@ class DemoApplicationTests {
 
         assertThat(responseBody).isNullOrEmpty();
     }
+
+    @Test
+    void unauthorized() {
+        String faulty_username = "hank-owns-no-cards";
+        String faulty_password = "qrs456";
+        String faulty_credentials = faulty_username + ":" + faulty_password;
+        String faulty_encodedAuth = Base64.getEncoder().encodeToString(faulty_credentials.getBytes());
+        String faulty_authHeader = "Basic " + faulty_encodedAuth;
+
+        EntityExchangeResult<String> result = client.get()
+                .uri("/demo/99")
+                .header(HttpHeaders.AUTHORIZATION, faulty_authHeader)
+                .exchange()
+                .expectStatus()
+                .isForbidden()
+                .expectBody(String.class)
+                .returnResult();
+
+        assertThat(result.getStatus().value())
+                .as("Checking HTTP Status Code")
+                .isEqualTo(HttpStatus.FORBIDDEN.value());
+
+        String responseBody = result.getResponseBody();
+
+        assertThat(responseBody).isNullOrEmpty();
+    }
+
+    @Test
+    void ownership() {
+        EntityExchangeResult<String> result = client.get()
+                .uri("/demo/102")
+                .header(HttpHeaders.AUTHORIZATION, authHeader)
+                .exchange()
+                .expectStatus()
+                .isNotFound()
+                .expectBody(String.class)
+                .returnResult();
+
+        assertThat(result.getStatus().value())
+                .as("Checking HTTP Status Code")
+                .isEqualTo(HttpStatus.NOT_FOUND.value());
+
+        String responseBody = result.getResponseBody();
+
+        assertThat(responseBody).isNullOrEmpty();
+    }
 }

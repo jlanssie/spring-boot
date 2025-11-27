@@ -1,15 +1,14 @@
 package com.example.demo;
 
-import org.springframework.data.domain.Page;
-import org.springframework.data.domain.PageRequest;
-import org.springframework.data.domain.Pageable;
+import org.springframework.data.domain.*;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 import org.springframework.web.util.UriComponentsBuilder;
-import org.springframework.data.domain.Sort;
 
 import java.net.URI;
-import java.util.*;
+import java.security.Principal;
+import java.util.List;
+import java.util.Optional;
 
 @RestController
 @RequestMapping("/demo")
@@ -32,14 +31,18 @@ public class DemoController {
     }
 
     @GetMapping("/{requestedId}")
-    private ResponseEntity<Demo> readDemo(@PathVariable Long requestedId) {
-        Optional<Demo> demoOptional = demoRepository.findById(requestedId);
-        return demoOptional.map(ResponseEntity::ok).orElseGet(() -> ResponseEntity.notFound().build());
+    private ResponseEntity<Demo> findById(@PathVariable Long requestedId, Principal principal) {
+        Optional<Demo> demoOptional = Optional.ofNullable(demoRepository.findByIdAndOwner(requestedId, principal.getName()));
+        if (demoOptional.isPresent()) {
+            return ResponseEntity.ok(demoOptional.get());
+        } else {
+            return ResponseEntity.notFound().build();
+        }
     }
 
     @GetMapping
-    private ResponseEntity<List<Demo>> findAll(Pageable pageable) {
-        Page<Demo> page = demoRepository.findAll(
+    private ResponseEntity<List<Demo>> findAll(Pageable pageable, Principal principal) {
+        Page<Demo> page = demoRepository.findByOwner(principal.getName(),
                 PageRequest.of(
                         pageable.getPageNumber(),
                         pageable.getPageSize(),
