@@ -32,9 +32,9 @@ public class DemoController {
 
     @GetMapping("/{requestedId}")
     private ResponseEntity<Demo> findById(@PathVariable Long requestedId, Principal principal) {
-        Optional<Demo> demoOptional = Optional.ofNullable(demoRepository.findByIdAndOwner(requestedId, principal.getName()));
-        if (demoOptional.isPresent()) {
-            return ResponseEntity.ok(demoOptional.get());
+        Demo cashCard = demoRepository.findByIdAndOwner(requestedId, principal.getName());
+        if (cashCard != null) {
+            return ResponseEntity.ok(cashCard);
         } else {
             return ResponseEntity.notFound().build();
         }
@@ -49,5 +49,16 @@ public class DemoController {
                         pageable.getSortOr(Sort.by(Sort.Direction.ASC, "amount"))
                 ));
         return ResponseEntity.ok(page.getContent());
+    }
+
+    @PutMapping("/{requestedId}")
+    private ResponseEntity<Void> updateDemo(@PathVariable Long requestedId, @RequestBody Demo cashCardUpdate, Principal principal) {
+        Demo cashCard = demoRepository.findByIdAndOwner(requestedId, principal.getName());
+        if (cashCard != null) {
+            Demo updatedDemo = new Demo(cashCard.id(), cashCardUpdate.amount(), principal.getName());
+            demoRepository.save(updatedDemo);
+            return ResponseEntity.noContent().build();
+        }
+        return ResponseEntity.notFound().build();
     }
 }
