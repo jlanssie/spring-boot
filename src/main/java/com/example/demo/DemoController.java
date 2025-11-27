@@ -32,7 +32,7 @@ public class DemoController {
 
     @GetMapping("/{requestedId}")
     private ResponseEntity<Demo> readDemo(@PathVariable Long requestedId, Principal principal) {
-        Demo cashCard = demoRepository.findByIdAndOwner(requestedId, principal.getName());
+        Demo cashCard = findDemo(requestedId, principal);
         if (cashCard != null) {
             return ResponseEntity.ok(cashCard);
         } else {
@@ -53,12 +53,16 @@ public class DemoController {
 
     @PutMapping("/{requestedId}")
     private ResponseEntity<Void> updateDemo(@PathVariable Long requestedId, @RequestBody Demo cashCardUpdate, Principal principal) {
-        Demo cashCard = demoRepository.findByIdAndOwner(requestedId, principal.getName());
+        Demo cashCard = findDemo(requestedId, principal);
         if (cashCard != null) {
             Demo updatedDemo = new Demo(cashCard.id(), cashCardUpdate.amount(), principal.getName());
             demoRepository.save(updatedDemo);
             return ResponseEntity.noContent().build();
         }
         return ResponseEntity.notFound().build();
+    }
+
+    private Demo findDemo(Long requestedId, Principal principal) {
+        return demoRepository.findByIdAndOwner(requestedId, principal.getName());
     }
 }
