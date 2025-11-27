@@ -158,8 +158,7 @@ class DemoApplicationTests {
         JSONArray page = documentContext.read("$[*]");
         assertThat(page.size()).isEqualTo(1);
     }
-
-    //@Disabled
+    
     @Test
     void readDemos_sorting() {
         EntityExchangeResult<String> result = client.get()
