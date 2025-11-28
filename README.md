@@ -15,7 +15,13 @@ Use Gradle to install Spring Boot Demo.
 Use Gradle to run the code.
 
 ```bash
-./gradlew clean bootRun
+./gradlew bootRun
+```
+
+Add the debug flag `--debug-jvm` to open a debugger on port 5005.
+
+```bash
+./gradlew bootRun --debug-jvm
 ```
 
 ## Contributing
