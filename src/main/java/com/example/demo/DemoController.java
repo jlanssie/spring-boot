@@ -3,7 +3,6 @@ package com.example.demo;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.PageRequest;
 import org.springframework.data.domain.Pageable;
-import org.springframework.data.domain.Sort;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 import org.springframework.web.util.UriComponentsBuilder;
@@ -18,8 +17,11 @@ public class DemoController {
 
     private final DemoRepository demoRepository;
 
-    private DemoController(DemoRepository demoRepository) {
+    private final ConfigurationService configurationService;
+
+    private DemoController(DemoRepository demoRepository, ConfigurationService configurationService) {
         this.demoRepository = demoRepository;
+        this.configurationService = configurationService;
     }
 
     @PostMapping
@@ -64,6 +66,12 @@ public class DemoController {
             return ResponseEntity.noContent().build();
         }
         return ResponseEntity.notFound().build();
+    }
+
+    @GetMapping("/config")
+    private ResponseEntity<String> readConfig() {
+        String message = configurationService.getEnvironmentMessage();
+        return ResponseEntity.ok("Env: " + message);
     }
 
     private Demo findDemo(Long requestedId, Principal principal) {

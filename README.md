@@ -24,6 +24,12 @@ Add the debug flag `--debug-jvm` to open a debugger on port 5005.
 ./gradlew bootRun --debug-jvm
 ```
 
+Add the profile flag `--debug-jvm` to pick a profile.
+
+```bash
+./gradlew bootRun --args='--spring.profiles.active=dev'
+```
+
 ## Contributing
 
 Pull requests are welcome. For major changes, please open an issue first
