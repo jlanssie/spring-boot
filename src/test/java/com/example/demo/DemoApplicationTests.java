@@ -3,6 +3,7 @@ package com.example.demo;
 import com.jayway.jsonpath.DocumentContext;
 import com.jayway.jsonpath.JsonPath;
 import net.minidev.json.JSONArray;
+import org.junit.jupiter.api.Disabled;
 import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.resttestclient.autoconfigure.AutoConfigureRestTestClient;
@@ -162,6 +163,30 @@ class DemoApplicationTests {
     void readDemos_sorting() {
         EntityExchangeResult<String> result = client.get()
                 .uri("/demo?sort=amount,desc")
+                .header(HttpHeaders.AUTHORIZATION, authHeader)
+                .exchange()
+                .expectStatus()
+                .isOk()
+                .expectHeader()
+                .contentTypeCompatibleWith(MediaType.APPLICATION_JSON)
+                .expectBody(String.class)
+                .returnResult();
+
+        String responseBody = result.getResponseBody();
+
+        DocumentContext documentContext = JsonPath.parse(responseBody);
+        JSONArray read = documentContext.read("$[*]");
+        assertThat(read.size()).isEqualTo(3);
+
+        double amount = documentContext.read("$[0].amount");
+        assertThat(amount).isEqualTo(150.00);
+    }
+
+    @Disabled
+    @Test
+    void readDemos_paginationSorting() {
+        EntityExchangeResult<String> result = client.get()
+                .uri("/demo?page=0&size=1&sort=amount,desc")
                 .header(HttpHeaders.AUTHORIZATION, authHeader)
                 .exchange()
                 .expectStatus()
