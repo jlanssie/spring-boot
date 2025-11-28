@@ -32,6 +32,7 @@ class SecurityConfig {
         return new BCryptPasswordEncoder();
     }
 
+    // TODO Remove hard-coded setup
     @Bean
     UserDetailsService testOnlyUsers(PasswordEncoder passwordEncoder) {
         User.UserBuilder users = User.builder();
