@@ -1,4 +1,4 @@
-package com.example.demo.data;
+package com.example.demo.pojos;
 
 import org.springframework.data.annotation.Id;
 

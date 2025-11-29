@@ -1,6 +1,6 @@
 package com.example.demo;
 
-import com.example.demo.data.Demo;
+import com.example.demo.pojos.Demo;
 import org.assertj.core.util.Arrays;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;

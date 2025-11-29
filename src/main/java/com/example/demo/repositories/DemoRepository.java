@@ -1,6 +1,6 @@
-package com.example.demo.databases;
+package com.example.demo.repositories;
 
-import com.example.demo.data.Demo;
+import com.example.demo.pojos.Demo;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
 import org.springframework.data.repository.CrudRepository;

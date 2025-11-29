@@ -1,6 +1,6 @@
 package com.example.demo;
 
-import com.example.demo.data.Demo;
+import com.example.demo.pojos.Demo;
 import com.jayway.jsonpath.DocumentContext;
 import com.jayway.jsonpath.JsonPath;
 import net.minidev.json.JSONArray;
