@@ -1,4 +1,4 @@
-INSERT INTO DEMO(ID, AMOUNT, OWNER) VALUES (99, 123.45, 'sarah1');
-INSERT INTO DEMO(ID, AMOUNT, OWNER) VALUES (100, 1.00, 'sarah1');
-INSERT INTO DEMO(ID, AMOUNT, OWNER) VALUES (101, 150.00, 'sarah1');
-INSERT INTO DEMO(ID, AMOUNT, OWNER) VALUES (102, 200.00, 'kumar2');
+INSERT INTO demo(id, amount, owner) VALUES (99, 123.45, 'sarah1');
+INSERT INTO demo(id, amount, owner) VALUES (100, 1.00, 'sarah1');
+INSERT INTO demo(id, amount, owner) VALUES (101, 150.00, 'sarah1');
+INSERT INTO demo(id, amount, owner) VALUES (102, 200.00, 'kumar2');

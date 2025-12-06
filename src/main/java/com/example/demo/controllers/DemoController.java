@@ -32,7 +32,7 @@ public class DemoController {
         Demo savedDemo = demoRepository.save(demo);
         URI locationOfNewDemo = ucb
                 .path("demo/{id}")
-                .buildAndExpand(savedDemo.id())
+                .buildAndExpand(savedDemo.getId())
                 .toUri();
         return ResponseEntity.created(locationOfNewDemo).build();
     }
@@ -64,7 +64,7 @@ public class DemoController {
     private ResponseEntity<Void> updateDemo(@PathVariable Long requestedId, @RequestBody Demo cashCardUpdate, Principal principal) {
         Demo cashCard = findDemo(requestedId, principal);
         if (cashCard != null) {
-            Demo updatedDemo = new Demo(cashCard.id(), cashCardUpdate.amount(), principal.getName());
+            Demo updatedDemo = new Demo(cashCard.getId(), cashCardUpdate.getAmount(), principal.getName());
             demoRepository.save(updatedDemo);
             return ResponseEntity.noContent().build();
         }

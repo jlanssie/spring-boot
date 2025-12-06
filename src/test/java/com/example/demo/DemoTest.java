@@ -52,8 +52,8 @@ class DemoTest {
                 }
                 """;
         assertThat(json.parse(expected)).isEqualTo(new Demo(99L, 123.45, "sarah1"));
-        assertThat(json.parseObject(expected).id()).isEqualTo(99);
-        assertThat(json.parseObject(expected).amount()).isEqualTo(123.45);
+        assertThat(json.parseObject(expected).getId()).isEqualTo(99);
+        assertThat(json.parseObject(expected).getAmount()).isEqualTo(123.45);
     }
 
     @Test
