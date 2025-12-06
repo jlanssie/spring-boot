@@ -1,6 +1,6 @@
-package com.example.demo.repositories;
+package com.example.demo.database;
 
-import com.example.demo.pojos.Demo;
+import com.example.demo.data.Demo;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
 import org.springframework.data.jpa.repository.JpaRepository;

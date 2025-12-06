@@ -1,8 +1,8 @@
-package com.example.demo.controllers;
+package com.example.demo.controller;
 
-import com.example.demo.pojos.Demo;
-import com.example.demo.repositories.DemoRepository;
-import com.example.demo.services.ConfigurationService;
+import com.example.demo.data.Demo;
+import com.example.demo.database.DemoRepository;
+import com.example.demo.service.ConfigurationService;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.PageRequest;
 import org.springframework.data.domain.Pageable;
