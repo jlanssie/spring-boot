@@ -4,7 +4,6 @@ import com.example.demo.pojos.Demo;
 import com.jayway.jsonpath.DocumentContext;
 import com.jayway.jsonpath.JsonPath;
 import net.minidev.json.JSONArray;
-import org.junit.jupiter.api.Disabled;
 import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.resttestclient.autoconfigure.AutoConfigureRestTestClient;
@@ -140,7 +139,6 @@ class DemoApplicationTests {
         assertThat(amounts).containsExactlyInAnyOrder(123.45, 1.0, 150.00);
     }
 
-    //@Disabled
     @Test
     void readDemos_pagination() {
         EntityExchangeResult<String> result = client.get()
@@ -183,11 +181,10 @@ class DemoApplicationTests {
         assertThat(amount).isEqualTo(150.00);
     }
 
-    @Disabled
     @Test
     void readDemos_paginationSorting() {
         EntityExchangeResult<String> result = client.get()
-                .uri("/demo?page=0&size=1&sort=amount,desc")
+                .uri("/demo?page=0&size=3&sort=amount,desc")
                 .header(HttpHeaders.AUTHORIZATION, authHeader)
                 .exchange()
                 .expectStatus()
