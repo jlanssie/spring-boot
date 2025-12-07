@@ -3,6 +3,8 @@ package com.example.demo.controller;
 import com.example.demo.data.Demo;
 import com.example.demo.database.DemoRepository;
 import com.example.demo.service.ConfigurationService;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.PageRequest;
 import org.springframework.data.domain.Pageable;
@@ -17,6 +19,8 @@ import java.util.List;
 @RestController
 @RequestMapping("/demo")
 public class DemoController {
+
+    private static final Logger log = LoggerFactory.getLogger(DemoController.class);
 
     private final DemoRepository demoRepository;
 
@@ -74,6 +78,9 @@ public class DemoController {
     @GetMapping("/config")
     private ResponseEntity<String> readConfig() {
         String message = configurationService.getEnvironmentMessage();
+
+        log.warn("Message is: {}",message);
+
         return ResponseEntity.ok("Env: " + message);
     }
 
