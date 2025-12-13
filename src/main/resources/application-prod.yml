@@ -1,0 +1,15 @@
+app:
+  env:
+    message: PRODUCTION
+
+spring:
+  datasource:
+    url: jdbc:postgresql://localhost:5432/demo
+    username: demo_user
+    password: demo_password
+    driver-class-name: org.postgresql.Driver
+
+logging:
+  level:
+    root: ERROR
+    com.example.demo: ERROR

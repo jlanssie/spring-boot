@@ -1,0 +1,8 @@
+spring:
+  application:
+    name: demo
+
+logging:
+  level:
+    root: WARN
+    com.example.demo: WARN
